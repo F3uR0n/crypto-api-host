@@ -1,0 +1,99 @@
+body {
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+  background-color: #0f172a;
+  color: #f8fafc;
+}
+
+header {
+  text-align: center;
+  padding: 30px;
+  background-color: #1e293b;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+}
+
+h1 {
+  margin: 0;
+  color: #38bdf8;
+}
+
+.search-bar {
+  margin: 20px 0;
+}
+
+.search-bar input {
+  width: 250px;
+  padding: 10px;
+  border-radius: 10px;
+  border: none;
+  background: #334155;
+  color: white;
+  text-align: center;
+}
+
+.search-bar button {
+  padding: 10px 20px;
+  border: none;
+  background-color: #38bdf8;
+  color: #0f172a;
+  font-weight: bold;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.search-bar button:hover {
+  background-color: #0ea5e9;
+}
+
+.filters {
+  margin-top: 10px;
+}
+
+.filters button {
+  background: #334155;
+  border: none;
+  color: #e2e8f0;
+  padding: 8px 15px;
+  border-radius: 8px;
+  margin: 3px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.filters button:hover {
+  background: #475569;
+}
+
+/* Table */
+table {
+  width: 90%;
+  margin: 30px auto;
+  border-collapse: collapse;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+thead {
+  background-color: #1e293b;
+}
+
+th, td {
+  padding: 15px;
+  text-align: center;
+  border-bottom: 1px solid #334155;
+}
+
+tr:hover {
+  background-color: #1e293b;
+}
+
+.positive {
+  color: #22c55e;
+  font-weight: bold;
+}
+
+.negative {
+  color: #ef4444;
+  font-weight: bold;
+}

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Crypto Dashboard</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>🚀 Crypto Dashboard</h1>
+    <div class="search-bar">
+      <input type="text" id="searchInput" placeholder="Search any coin (e.g. bitcoin)" />
+      <button onclick="searchCoin()">Search</button>
+    </div>
+    <div class="filters">
+      <button onclick="sortBy('price')">💵 Sort by Price</button>
+      <button onclick="sortBy('change')">📈 Sort by Change</button>
+      <button onclick="sortBy('market_cap')">🏦 Sort by Market Cap</button>
+    </div>
+  </header>
+
+  <main>
+    <table>
+      <thead>
+        <tr>
+          <th>Coin</th>
+          <th>Symbol</th>
+          <th>Price (USD)</th>
+          <th>24h Change</th>
+          <th>Market Cap</th>
+        </tr>
+      </thead>
+      <tbody id="coinTable"></tbody>
+    </table>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
