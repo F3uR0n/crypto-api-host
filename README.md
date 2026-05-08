@@ -1,90 +1,55 @@
-# 🚀 Crypto API Host (Crypto Dashboard)
+# Crypto API Host
 
-A responsive and interactive **cryptocurrency dashboard** built using **HTML, CSS, and JavaScript**, powered by the **CoinGecko public API**.
-This project allows users to track real-time crypto market data, search for specific coins, and sort them based on different market metrics.
+Nebula Markets is a modern cryptocurrency dashboard that surfaces live market leaders and multi-year trendlines in a single view. It combines rich filtering, instant search, and interactive charts powered by the CoinGecko API.
 
----
+## Features
 
-## 📌 Features
+- Live market overview with rank, price, and multi-horizon change metrics
+- Advanced sorting with configurable direction and market-cap tiers
+- Quick filters for gainers, losers, high-volume assets, and big movers
+- Trend explorer chart for price, market cap, and volume over months or years
+- Insight cards highlighting top gainer, top loser, and volume leader
 
-* 🔍 **Search any cryptocurrency** by name (e.g., Bitcoin, Ethereum)
-* 💵 **Sort coins by price**
-* 📈 **Sort coins by 24h percentage change**
-* 🏦 **Sort coins by market capitalization**
-* 📊 Displays:
+## Tech Stack
 
-  * Current price (USD)
-  * 24-hour price change
-  * Market cap
-  * Coin logo and symbol
-* 🎨 Modern dark-themed UI for better readability
+- HTML5
+- CSS3
+- JavaScript (ES6)
+- Chart.js
+- CoinGecko API
 
----
+## Live Link
 
-## 🛠️ Tech Stack
+Live link: https://f3ur0n.github.io/crypto-api-host/
 
-* **HTML5** – Structure
-* **CSS3** – Styling and layout
-* **JavaScript (ES6)** – Logic and API handling
-* **CoinGecko API** – Live cryptocurrency data
+## Configuration
 
----
+If you have a CoinGecko Pro key, create a local config file so it is not committed:
 
-## ⚙️ How It Works
+1. Copy config.example.js to config.js
+2. Add your API key inside config.js
 
-1. Fetches top 30 cryptocurrencies by market cap from CoinGecko
-2. Stores data in memory for sorting and filtering
-3. Dynamically updates the table based on user interaction
-4. Uses CoinGecko search API to fetch individual coin data
+The config.js file is ignored by Git and safe for local use only.
 
----
-
-## 📁 Project Structure
+## Project Structure
 
 ```
 crypto-api-host/
-│
-├── index.html      # Main HTML file
-├── style.css       # Styling
-├── script.js       # API logic and DOM manipulation
+├── .gitignore
+├── config.example.js
+├── config.js          # local only, ignored by Git
+├── index.html
+├── script.js
+├── style.css
 └── README.md
 ```
 
----
+## How It Works
 
-## 🚧 Limitations
+1. Loads the top 50 assets by market cap from CoinGecko.
+2. Applies client-side filters, search, and sorting for fast navigation.
+3. Fetches historical data for the selected asset to render the chart.
 
-* Uses **public CoinGecko API** (rate-limited)
-* No backend or database
-* Data refresh requires page reload
+## About
 
----
-
-## 🌱 Future Improvements
-
-* 📊 Add charts (price history)
-* 🔄 Auto-refresh market data
-* ⭐ Favorite/watchlist system
-* 📱 Improved mobile responsiveness
-* 🌍 Multi-currency support (USD, EUR, BDT)
-
----
-
-## 🎯 Purpose of This Project
-
-This project was built to:
-
-* Practice **API integration**
-* Improve **JavaScript DOM manipulation**
-* Learn **client-side sorting & filtering**
-* Build a real-world dashboard UI
-
----
-
-## 📜 License
-
-This project is open-source and free to use for learning purposes.
-
----
-
-### ⭐ If you like this project, give it a star!
+Nebula Markets is a focused front-end project built to visualize crypto market movement with clarity. The interface emphasizes fast scanning, flexible filtering, and long-term trend context without a backend or heavy tooling. It is ideal for showcasing API integration, data visualization, and UI polish.

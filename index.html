@@ -3,38 +3,159 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Crypto Dashboard</title>
+  <title>Nebula Markets</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <header>
-    <h1>🚀 Crypto Dashboard</h1>
-    <div class="search-bar">
-      <input type="text" id="searchInput" placeholder="Search any coin (e.g. bitcoin)" />
-      <button onclick="searchCoin()">Search</button>
-    </div>
-    <div class="filters">
-      <button onclick="sortBy('price')">💵 Sort by Price</button>
-      <button onclick="sortBy('change')">📈 Sort by Change</button>
-      <button onclick="sortBy('market_cap')">🏦 Sort by Market Cap</button>
-    </div>
-  </header>
+  <div class="page">
+    <header class="hero">
+      <div class="hero-top">
+        <div class="brand">Nebula Markets</div>
+        <div class="status">Last updated <span id="lastUpdated">--</span></div>
+      </div>
+      <div class="hero-content">
+        <div class="hero-copy">
+          <h1>Crypto pulse, mapped and measured.</h1>
+          <p>Track market leaders, filter movers, and explore multi-year trendlines without leaving the dashboard.</p>
+        </div>
+        <div class="hero-actions">
+          <div class="search-stack">
+            <input type="text" id="searchInput" placeholder="Filter by name or symbol" />
+            <button id="searchButton" type="button">Lookup coin</button>
+          </div>
+          <p class="search-note" id="searchStatus">Live filter updates as you type.</p>
+          <div class="control-grid">
+            <label>
+              Sort by
+              <select id="sortSelect">
+                <option value="market_cap">Market cap</option>
+                <option value="price">Price</option>
+                <option value="change24h">24h change</option>
+                <option value="change7d">7d change</option>
+                <option value="volume">Volume</option>
+                <option value="name">Name</option>
+              </select>
+            </label>
+            <label>
+              Direction
+              <select id="sortDirection">
+                <option value="desc">Descending</option>
+                <option value="asc">Ascending</option>
+              </select>
+            </label>
+            <label>
+              Filter
+              <select id="filterSelect">
+                <option value="all">All assets</option>
+                <option value="gainers">Top gainers</option>
+                <option value="losers">Top losers</option>
+                <option value="volume">High volume</option>
+                <option value="movers">Big movers 7d</option>
+              </select>
+            </label>
+            <label>
+              Cap tier
+              <select id="capSelect">
+                <option value="top50">Top 50</option>
+                <option value="top30">Top 30</option>
+                <option value="top10">Top 10</option>
+              </select>
+            </label>
+          </div>
+        </div>
+      </div>
+    </header>
 
-  <main>
-    <table>
-      <thead>
-        <tr>
-          <th>Coin</th>
-          <th>Symbol</th>
-          <th>Price (USD)</th>
-          <th>24h Change</th>
-          <th>Market Cap</th>
-        </tr>
-      </thead>
-      <tbody id="coinTable"></tbody>
-    </table>
-  </main>
+    <main class="content">
+      <section class="panel">
+        <div class="panel-head">
+          <div>
+            <h2>Market overview</h2>
+            <p class="muted" id="resultCount">Loading assets...</p>
+          </div>
+          <div class="chip-row" id="quickFilters">
+            <button class="chip is-active" data-filter="all" type="button">All</button>
+            <button class="chip" data-filter="gainers" type="button">Gainers</button>
+            <button class="chip" data-filter="losers" type="button">Losers</button>
+            <button class="chip" data-filter="volume" type="button">High volume</button>
+            <button class="chip" data-filter="movers" type="button">Big movers</button>
+          </div>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Rank</th>
+                <th>Asset</th>
+                <th>Price</th>
+                <th>24h</th>
+                <th>7d</th>
+                <th>30d</th>
+                <th>Market cap</th>
+                <th>Volume</th>
+              </tr>
+            </thead>
+            <tbody id="coinTable"></tbody>
+          </table>
+        </div>
+      </section>
 
+      <section class="panel chart-panel">
+        <div class="panel-head">
+          <div>
+            <h2>Trend explorer</h2>
+            <p class="muted" id="chartSubtitle">Select a coin to view its history.</p>
+          </div>
+          <div class="chart-controls">
+            <select id="chartCoin"></select>
+            <select id="chartRange">
+              <option value="7">7 days</option>
+              <option value="30" selected>30 days</option>
+              <option value="90">90 days</option>
+              <option value="365">1 year</option>
+              <option value="max">Max</option>
+            </select>
+            <select id="chartMetric">
+              <option value="prices">Price</option>
+              <option value="market_caps">Market cap</option>
+              <option value="total_volumes">Volume</option>
+            </select>
+          </div>
+        </div>
+        <div class="chart-wrap">
+          <canvas id="trendChart" height="120"></canvas>
+        </div>
+      </section>
+
+      <section class="panel insights" id="insightPanel">
+        <div class="insight">
+          <p class="insight-label">Top gainer (24h)</p>
+          <h3 id="topGainer">--</h3>
+          <p class="muted" id="topGainerValue">--</p>
+        </div>
+        <div class="insight">
+          <p class="insight-label">Top loser (24h)</p>
+          <h3 id="topLoser">--</h3>
+          <p class="muted" id="topLoserValue">--</p>
+        </div>
+        <div class="insight">
+          <p class="insight-label">Highest volume</p>
+          <h3 id="topVolume">--</h3>
+          <p class="muted" id="topVolumeValue">--</p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p>Data from CoinGecko. Click any row to pin it in the trend explorer.</p>
+    </footer>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
+  <script src="config.js"></script>
   <script src="script.js"></script>
 </body>
 </html>
